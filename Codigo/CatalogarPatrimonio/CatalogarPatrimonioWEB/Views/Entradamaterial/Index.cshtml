@@ -1,0 +1,90 @@
+@model IEnumerable<CatalogarPatrimonioWEB.Models.EntradamaterialModel>
+
+@{
+    ViewData["Title"] = "Início Entrada de Material";
+    Layout = "_LayoutInside";
+}
+
+<h1>Lista Entrada Material</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nova Entrada de Material</a>
+</p>
+<div class="card">
+    <div class="card-body">
+        <table id="entradamaterial" class="table table-bordered table-striped dataTable" role="grid">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdEntrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdMaterial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantidade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuantidadeUtilizada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Valor)
+                    </th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var item in Model)
+                {   
+                    <tr>
+                        <td>
+                            @Html.ActionLink("", "Edit", new { id = item.IdMaterial }, new { @class = "fas fa-edit" })
+                            @Html.ActionLink("", "Details", new { id = item.IdMaterial }, new { @class = "fas fa-eye" })
+                            @Html.ActionLink("", "Delete", new { id = item.IdMaterial }, new { @class = "fas fa-trash-alt" })
+                        </td>
+                    </tr>
+                }
+            </tbody> 
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdEntrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdMaterial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantidade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuantidadeUtilizada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Valor)
+                    </th>
+                    <th>Ação</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+    $(document).ready( function () {
+        $('#entradamaterial').DataTable({
+            language: {
+                url: '/DataTables/plugins/pt_br.json'
+            },
+            columnDefs: [{
+                targets: 4,
+                orderable: false
+            }]
+        });
+    } );
+
+    </script>
+
+}
